@@ -24,58 +24,50 @@ exports.lineModel = 'ApiLineModel';
 exports.priceModel = 'ApiLinePriceModel';
 
 // Commands convert table
-const commandsConvertTable = {};
-commandsConvertTable[exports.connectCommand] = {
-  id: 4000
+const commandsConvertTable = {
+  4000: {name: exports.connectCommand},
+  4030: {name: exports.commandStatus},
+  4003: {name: exports.subscribeCommand},
+  4002: {name: exports.queryCommand},
+  4100: {
+    name: exports.queryStatusModel ,
+    emittedName: 'queryFinish'
+  },
+  4110: {
+    name: exports.regionModel ,
+    emittedName: 'region'
+  },
+  4111: {
+    name: exports.leagueModel,
+    emittedName: 'league'
+  },
+  4112: {
+    name: exports.teamModel,
+    emittedName: 'team'
+  },
+  4113: {
+    name: exports.eventModel,
+    emittedName: 'event'
+  },
+  4114: {
+    name: exports.eventUpdateModel,
+    emittedName: 'eventUpdate'
+  },
+  4115: {
+    name: exports.lineModel,
+    emittedName: 'line'
+  },
+  4116: {
+    name: exports.priceModel,
+    emittedName: 'betOffer'
+  }
 };
-commandsConvertTable[exports.commandStatus] = {
-  id: 4030
-};
-commandsConvertTable[exports.subscribeCommand] = {
-  id: 4003
-};
-commandsConvertTable[exports.queryCommand] = {
-  id: 4002
-};
-commandsConvertTable[exports.queryStatusModel] = {
-  id: 4100,
-  emittedName: 'queryFinish'
-};
-commandsConvertTable[exports.keepAlive] = {
-  id: -10,
+commandsConvertTable[-10] = {
+  name: exports.keepAlive ,
   isEmpty: true
 };
-commandsConvertTable[exports.subscriptionStatus] = {
-  id: -12
-};
-commandsConvertTable[exports.regionModel] = {
-  id: 4110,
-  emittedName: 'region'
-};
-commandsConvertTable[exports.leagueModel] = {
-	id: 4111,
-  emittedName: 'league'
-};
-commandsConvertTable[exports.teamModel] = {
-	id: 4112,
-  emittedName: 'team'
-};
-commandsConvertTable[exports.eventModel] = {
-	id: 4113,
-  emittedName: 'event'
-};
-commandsConvertTable[exports.eventUpdateModel] = {
-	id: 4114,
-  emittedName: 'eventUpdate'
-};
-commandsConvertTable[exports.lineModel] = {
-	id: 4115,
-  emittedName: 'line'
-};
-commandsConvertTable[exports.priceModel] = {
-	id: 4116,
-  emittedName: 'betOffer'
-};
+commandsConvertTable[-12] = {name: exports.subscriptionStatus};
+
 
 exports.commandsConvertTable = commandsConvertTable;
 

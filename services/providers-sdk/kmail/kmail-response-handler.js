@@ -67,6 +67,7 @@ const routeResponse = (frame2, frame3, frame4, kmailSDK, dataChannel) => {
   } catch (err) {
     kmailSDK.emitter.emit('err', err);
     emitProtoChange(kmailSDK.emitter);
+    return false;
   }
 
   if(!decodedData) {
@@ -75,9 +76,9 @@ const routeResponse = (frame2, frame3, frame4, kmailSDK, dataChannel) => {
       emitProtoChange(kmailSDK.emitter);
   }
 
-  if (router[decodedData.className]) {
-    const emittedName = _.get(config, `commandsConvertTable.${decodedData.className}.emittedName`);
-    return router[decodedData.className](decodedData.object, kmailSDK, dataChannel, emittedName);
+  if (router[decodedData.className.name]) {
+    const emittedName = _.get(config, `commandsConvertTable.${decodedData.payloadType}.emittedName`);
+    return router[decodedData.className.name](decodedData.object, kmailSDK, dataChannel, emittedName);
   }
   else{
     kmailSDK.emitter.emit('err', { error:`Server Response Error: Received an object of class - `

@@ -17,12 +17,12 @@ const addUUID = async (rawData) => {
   return processedData;
 };
 
-const convertTable = config.commandsConvertTable;
+const idToClass = config.commandsConvertTable;
+const convertTable = {};
+_.keys(idToClass).forEach((key) => {convertTable[idToClass[key].name] = {id: key}});
 convertTable[config.connectCommand].additionalWork = addUUID;
 convertTable[config.subscribeCommand].additionalWork = addUUID;
 convertTable[config.queryCommand].additionalWork = addUUID;
-const idToClassName = {};
-_.keys(convertTable).forEach((key) => {idToClassName[convertTable[key].id] = key});
 
 const createEnvelop = async (id) => {
   const connectGuidMessageId = await uuid.randomUUID();
@@ -75,16 +75,16 @@ const extract = (frame2, frame3, frame4) => {
   }
 
   const envelopObject = decodeEnvelop(envelop);
-  const className = idToClassName[envelopObject.PayloadType];
+  const className = idToClass[envelopObject.PayloadType];
 
   if (!className) {
     throw Error(`Server Response Error: Extract - Unknown class id - ${envelopObject.PayloadType}! can\'t decode`);
   }
 
   let retObject = undefined; 
-  if (!convertTable[className].isEmpty) {
+  if (!idToClass[envelopObject.PayloadType].isEmpty) {
     try {
-      retObject = KmailProtoLoader.decode(className, payload);
+      retObject = KmailProtoLoader.decode(className.name, payload);
     } catch (err) {
       throw Error(`Server Response Error: Extract - Error decoding object of id ${envelopObject.PayloadType} - ${className}`);
     }
@@ -92,7 +92,8 @@ const extract = (frame2, frame3, frame4) => {
 
   return {
     object: retObject,
-    className
+    className,
+    payloadType: envelopObject.PayloadType
   };
 };
 
