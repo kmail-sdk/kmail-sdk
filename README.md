@@ -76,7 +76,10 @@ Here is the entities list you can register to and their meaning:
 | team | teamModel | the team entity.
 | event | eventModel | the game entity. contain home team, away team, and league
 | eventUpdate | eventUpdateModel | an update to the event model (goals, time, red cards)
+| delete-eventUpdate | eventUpdateModel | a delete update to the event model
 | line | lineModel | the bet line entity. contain event id
+| deleted-line | lineModel | delete event for the bet line entity
 | betOffer | priceModel | the bet entity. contain line id
+| deleted-betOffer | priceModel | delete event for the bet entity
 | statusUpdate | N/A | received this entity when the status of the SDK changed (active, inactive)
 | err | N/A | error occur in the SDK

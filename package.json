@@ -1,6 +1,6 @@
 {
   "name": "octo-kmail",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,11 @@
   "engines": {
     "node": ">=8"
   },
-  "author": "",
+  "author": "kmail-sdk",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kmail-sdk/kmail-sdk"
+  },
   "license": "ISC",
   "dependencies": {
     "@angular/core": "^7.2.15",

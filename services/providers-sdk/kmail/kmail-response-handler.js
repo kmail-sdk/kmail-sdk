@@ -9,7 +9,7 @@ const PackageTransformer = require(path.resolve(__kmail_basedir, 'services/provi
 
 const emitProtoChange = (emitter) => {
   emitter.emit('err', {error: 'Kmail might changed their .proto folder. if persist contact Kmail ASAP!'});
-}
+};
 
 const keepAliveHandler = (decodedData, kmailSDK, dataChannel) => {
   if (dataChannel) {
@@ -39,8 +39,9 @@ const subscriptionStatusHandler = (decodedData, kmailSDK, dataChannel) => {
 };
 
 const modelHandler = (decodedObject, kmailSDK, dataChannel, className) => {
-  kmailSDK.emitter.emit(className, decodedObject);
-}
+  const addition = _.get(decodedObject, 'Status') === -1 ? 'deleted-' : ''
+  kmailSDK.emitter.emit(addition + className, decodedObject);
+};
 
 const queryFinishedHandler = (decodedObject, kmailSDK, dataChannel, className) => {
   kmailSDK.emitter.emit(className, decodedObject.Count.toString());
