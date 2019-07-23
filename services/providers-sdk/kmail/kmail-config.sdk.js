@@ -1,12 +1,5 @@
 'use strict';
 
-exports.LicenseKey = '1decaa9d320b458b8f3d3d35b8536ef9';
-exports.Identity = '@311111111126';
-exports.Password = 'Neddj32kc!kfds#';
-exports.kmailIP = 'tcp://52.175.35.113';
-exports.commandSocketProt = '3040';
-exports.dataSocketProt = '3041';
-
 // Constants of commands names
 exports.connectCommand = 'ApiConnectCommand';
 exports.commandStatus = 'ApiCommandStatus';

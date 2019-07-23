@@ -5,13 +5,13 @@ const path = require('path');
 const config = require(path.resolve(__kmail_basedir, 'services/providers-sdk/kmail/kmail-config.sdk'));
 const KmailProtoLoader = require(path.resolve(__kmail_basedir, 'services/providers-sdk/kmail/kmail-proto-loader'));
 
-const createConnectCommand = () => {
+const createConnectCommand = (sdk) => {
   const createCommand = config.connectCommand;
   return {
     data: {
-      LicenseKey: config.LicenseKey,
-      Identity: config.Identity,
-      Password: config.Password,
+      LicenseKey: sdk.licenseKey,
+      Identity: sdk.identity,
+      Password: sdk.password,
       ApiMajorVersion: 1,
       ApiMinorVersion: 1
     },
